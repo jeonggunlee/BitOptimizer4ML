@@ -43,6 +43,54 @@ def binRep(num, bits):
 
 Using the above function, we can make ```bit```-bit floating-point number for a given 32 bit FP number.
 
+*  *  *
+
+Then, with the following code, we can extract modifiable values of weights and biases.
+
+```python
+w1_ = sess.run(W1)      # tf.random_normal([3, 3, 1, 32]    ~ 288
+w2_ = sess.run(W2)      # tf.random_normal([3, 3, 32, 64]   ~ 18432
+w3_ = sess.run(W3)      # tf.random_normal([3, 3, 64, 128]  ~ 73728
+w4_ = sess.run(W4)      # shape=[128 * 4 * 4, 625]          ~ 1280000
+b4_ = sess.run(b4)      # tf.random_normal([625])           ~ 625
+w5_ = sess.run(W5)      # shape=[625, 10]                   ~ 6250
+b5_ = sess.run(b5)      # tf.random_normal([10])            ~ 10
+```
+
+
+After getting the modifiable values, w1_, ... b5_, we modifies those weights and biases with the ```binRep``` function to truncate bit-width. The following code includes the truncating function of make the w1_ weights to 11 bit FP values.
+
+```python
+...
+... modifying w1_, w2_, w3_, w4_ ...
+
+...
+
+for i in range(3):
+    for j in range(3):
+        for k in range(1):
+            for l in range(32):
+                w1_[i][j][k][l]=binRep(w1_[i][j][k][l], 11)
+
+...
+...
+```
+
+Finally, after modifying weights and biases, we can reassign the values to the tensors for weights and biases.
+
+```python
+# Reassign w1_ to W1
+sess.run(W1.assign(w1_))
+sess.run(W2.assign(w2_))
+sess.run(W3.assign(w3_))
+sess.run(W4.assign(w4_))
+sess.run(W5.assign(w5_))
+sess.run(b4.assign(b4_))
+sess.run(b5.assign(b5_))
+# print(sess.run(W1))
+
+```
+
 
 ## 
 
