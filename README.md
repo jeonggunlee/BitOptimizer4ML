@@ -19,4 +19,27 @@ A modern deep learning model is built with much larger and deeper networks than 
 In this work, we try to optimize weight and bias parameters so that we can minimize the operational and memory requirements for real-time inferences with a deep learning model. In particular, our parameter optimizations are conducted without the degradation of inference quality or with a ignorable drop of the quality. We also discuss the impact of the parameter optimizations on the prediction accuracy of a deep learning model. Particularly, the relationship between a parameter precision and an overfitting problem will be discussed. A CNN based MNIST (handwritten digit recognition) deep learning model has been used most widely as a comprehensible
 example in a deep learning community. We use the MNIST model for our study and we can derive some intuitional interpretations behind the results more easily through the commonly used small example. However, we expect that our work can be applied to more complex deep learning applications to some extent consistently.
 
+*  *  *
+
+```python
+def binRep(num, bits):
+    binNum = bin(ctypes.c_uint.from_buffer(ctypes.c_float(num)).value)[2:]
+    temp1 = binNum.rjust(32,"0")
+    temp2 = temp1[0:bits]
+    binNum = temp2.ljust(32,"0")
+    #print("bits: " + binNum.rjust(32,"0"))
+    mantissa = "1" + binNum[-23:]
+    #print("sig (bin): " + mantissa.rjust(24))
+    mantInt = int(mantissa,2)/2**23
+    #print("sig (float): " + str(mantInt))
+    base = int(binNum[-31:-23],2)-127
+    #print("base:" + str(base))
+    sign = 1-2*("1"==binNum[-32:-31].rjust(1,"0"))
+    #print("sign:" + str(sign))
+    #print("recreate:" + str(sign*mantInt*(2**base)))
+    return sign*mantInt*(2**base)
+```
+
+
+
 ## 
