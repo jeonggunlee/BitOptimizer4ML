@@ -1,4 +1,4 @@
-# Lab 11 MNIST and Deep learning CNN
+# MNIST and Deep learning CNN
 import tensorflow as tf
 import random
 import numpy as np
