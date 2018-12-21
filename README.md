@@ -4,7 +4,7 @@ Bit Width Optimization and Architectural Renovation for Embedded Machine Learnin
 *  *  *
 # Model Parameter Optimization of a Deep Neural Network - MNIST Case Study
 
-E-SoC Lab / Smart Computing Lab, School of Software, Hallym University, South Korea
+```E-SoC Lab / Smart Computing Lab, School of Software, Hallym University, South Korea```
 
 ```Abstract```: In order to operate an artificial neural network (ANN) based machine learning software in an embedded system, it is essential to reduce the model size due to the limited resources. Particularly, learnable parameters of ANN such as weights and biases can consume large amount of a system memory. Consequently, it is necessary to optimize the required memory for the learnable parameters while maintaining the model accuracy. In this work, we investigate a memory size optimization of a convolutional neural network (CNN) model in the case of the MNIST handwritten digit recognition. We study the impact on the performance of CNN when we reduce the bit-widths of the floating point variables used for the weights and biases. 
 
