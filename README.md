@@ -20,6 +20,7 @@ In this work, we try to optimize weight and bias parameters so that we can minim
 example in a deep learning community. We use the MNIST model for our study and we can derive some intuitional interpretations behind the results more easily through the commonly used small example. However, we expect that our work can be applied to more complex deep learning applications to some extent consistently.
 
 *  *  *
+The following code is for truncating a 32-bit floating-point number (```num```) to ```bit```-bit floating-point number.
 
 ```python
 def binRep(num, bits):
