@@ -6,7 +6,7 @@ Bit Width Optimization and Architectural Renovation for Embedded Machine Learnin
 
 E-SoC Lab / Smart Computing Lab, School of Software, Hallym University, South Korea
 
-```Abstract```: In order to operate an artificial neural network (ANN) based machine learning software in an embedded system, it is essential to reduce the model size due to the limited resources. Particularly, learnable parameters of ANN such as weights and biases can consume large amount of a system memory. Consequently, it is necessary to optimize the required memory for the learnable parameters while maintaining the model accuracy. In this paper, we investigate a memory size optimization of a convolutional neural network (CNN) model in the case of the MNIST handwritten digit recognition. We study the impact on the performance of CNN when we reduce the bit-widths of the floating point variables used for the weights and biases. 
+```Abstract```: In order to operate an artificial neural network (ANN) based machine learning software in an embedded system, it is essential to reduce the model size due to the limited resources. Particularly, learnable parameters of ANN such as weights and biases can consume large amount of a system memory. Consequently, it is necessary to optimize the required memory for the learnable parameters while maintaining the model accuracy. In this work, we investigate a memory size optimization of a convolutional neural network (CNN) model in the case of the MNIST handwritten digit recognition. We study the impact on the performance of CNN when we reduce the bit-widths of the floating point variables used for the weights and biases. 
 
 ### Keywords—Deep neural network, Bit-width optimization, MNIST.
 
@@ -20,7 +20,7 @@ In this work, we try to optimize weight and bias parameters so that we can minim
 example in a deep learning community. We use the MNIST model for our study and we can derive some intuitional interpretations behind the results more easily through the commonly used small example. However, we expect that our work can be applied to more complex deep learning applications to some extent consistently.
 
 *  *  *
-The following code is for truncating a 32-bit floating-point number (```num```) to ```bit```-bit floating-point number.
+The following code is for truncating a 32-bit floating-point (FP) number (```num```) to ```bit```-bit floating-point number.
 
 ```python
 def binRep(num, bits):
@@ -41,6 +41,7 @@ def binRep(num, bits):
     return sign*mantInt*(2**base)
 ```
 
+Using the above function, we can make ```bit```-bit floating-point number for a given 32 bit FP number.
 
 
 ## 
